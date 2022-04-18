@@ -314,7 +314,29 @@ namespace MyHW
 
         private void btnFolder_Click(object sender, EventArgs e)
         {
-       //todo.....
+            using (OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Filter = "Image|*.jpeg;*.jpg;*.bmp",
+                ValidateNames = true,
+                Multiselect = true
+            })
+            {
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (string f in ofd.FileNames)
+                    {
+                        FileInfo fi = new FileInfo(f);
+                        ListViewItem item = new ListViewItem(fi.Name);
+                        item.SubItems.Add(fi.FullName);
+                        listView1.Items.Add(item);
+                    }
+
+
+                }
+
+
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

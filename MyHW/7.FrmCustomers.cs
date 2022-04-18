@@ -191,16 +191,16 @@ namespace MyHW
                     }
                     else
                     {
-                        ListViewGroup gUSA = this.lsVCustomers.Groups["UK"];
-                        lvi.Group = gUSA;
+                        ListViewGroup group= this.lsVCustomers.Groups["UK"];
+                        lvi.Group = group;
                     }
-                    this.lsVCustomers.Groups["UK"].Tag = 0;
+                    this.lsVCustomers.Groups["UK"].Tag = 1;
                      k= lsVCustomers.Items.Count;
                     this.lsVCustomers.Groups["UK"].Header = "UK" + "(" +(k- n )+ ")";
                 }
 
             }
-            
+      
             
             }
         }
