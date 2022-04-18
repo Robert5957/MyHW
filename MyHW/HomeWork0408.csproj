@@ -130,6 +130,12 @@
     <Compile Include="7.FrmLogon.Designer.cs">
       <DependentUpon>7.FrmLogon.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmImageFlags.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmImageFlags.designer.cs">
+      <DependentUpon>FrmImageFlags.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="7.FrmLogon.resx">
       <DependentUpon>7.FrmLogon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmImageFlags.resx">
+      <DependentUpon>FrmImageFlags.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

@@ -30,6 +30,7 @@ namespace MyHW
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCustomers));
             this.lsVCustomers = new System.Windows.Forms.ListView();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detailsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,9 +41,11 @@ namespace MyHW
             this.customersIDDESCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupByToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.countryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblCountry7 = new System.Windows.Forms.Label();
             this.cbbCountry = new System.Windows.Forms.ComboBox();
-            this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ImageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.ImageList2 = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,10 +57,12 @@ namespace MyHW
             this.lsVCustomers.ContextMenuStrip = this.contextMenuStrip;
             this.lsVCustomers.GridLines = true;
             this.lsVCustomers.HideSelection = false;
-            this.lsVCustomers.Location = new System.Drawing.Point(3, 297);
+            this.lsVCustomers.LargeImageList = this.ImageList2;
+            this.lsVCustomers.Location = new System.Drawing.Point(3, 106);
             this.lsVCustomers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lsVCustomers.Name = "lsVCustomers";
-            this.lsVCustomers.Size = new System.Drawing.Size(923, 252);
+            this.lsVCustomers.Size = new System.Drawing.Size(923, 443);
+            this.lsVCustomers.SmallImageList = this.ImageList1;
             this.lsVCustomers.TabIndex = 0;
             this.lsVCustomers.UseCompatibleStateImageBehavior = false;
             this.lsVCustomers.View = System.Windows.Forms.View.Details;
@@ -71,26 +76,26 @@ namespace MyHW
             this.orderByToolStripMenuItem,
             this.groupByToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(143, 114);
+            this.contextMenuStrip.Size = new System.Drawing.Size(181, 136);
             // 
             // detailsViewToolStripMenuItem
             // 
             this.detailsViewToolStripMenuItem.Name = "detailsViewToolStripMenuItem";
-            this.detailsViewToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.detailsViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.detailsViewToolStripMenuItem.Text = "Details View";
             this.detailsViewToolStripMenuItem.Click += new System.EventHandler(this.detailsViewToolStripMenuItem_Click);
             // 
             // largeIconToolStripMenuItem
             // 
             this.largeIconToolStripMenuItem.Name = "largeIconToolStripMenuItem";
-            this.largeIconToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.largeIconToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.largeIconToolStripMenuItem.Text = "Large icon";
             this.largeIconToolStripMenuItem.Click += new System.EventHandler(this.largeIconToolStripMenuItem_Click);
             // 
             // smallIconToolStripMenuItem
             // 
             this.smallIconToolStripMenuItem.Name = "smallIconToolStripMenuItem";
-            this.smallIconToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.smallIconToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.smallIconToolStripMenuItem.Text = "Small icon";
             this.smallIconToolStripMenuItem.Click += new System.EventHandler(this.smallIconToolStripMenuItem_Click);
             // 
@@ -100,7 +105,7 @@ namespace MyHW
             this.customersIDASCToolStripMenuItem,
             this.customersIDDESCToolStripMenuItem});
             this.orderByToolStripMenuItem.Name = "orderByToolStripMenuItem";
-            this.orderByToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.orderByToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.orderByToolStripMenuItem.Text = "Order by";
             this.orderByToolStripMenuItem.Click += new System.EventHandler(this.orderByToolStripMenuItem_Click);
             // 
@@ -135,6 +140,12 @@ namespace MyHW
             this.countryToolStripMenuItem.Text = "Country";
             this.countryToolStripMenuItem.Click += new System.EventHandler(this.countryToolStripMenuItem_Click);
             // 
+            // cityToolStripMenuItem
+            // 
+            this.cityToolStripMenuItem.Name = "cityToolStripMenuItem";
+            this.cityToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cityToolStripMenuItem.Text = "City";
+            // 
             // lblCountry7
             // 
             this.lblCountry7.AutoSize = true;
@@ -156,11 +167,53 @@ namespace MyHW
             this.cbbCountry.TabIndex = 2;
             this.cbbCountry.SelectedIndexChanged += new System.EventHandler(this.cbbCountry_SelectedIndexChanged);
             // 
-            // cityToolStripMenuItem
+            // ImageList1
             // 
-            this.cityToolStripMenuItem.Name = "cityToolStripMenuItem";
-            this.cityToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cityToolStripMenuItem.Text = "City";
+            this.ImageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList1.ImageStream")));
+            this.ImageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImageList1.Images.SetKeyName(0, "FLGGERM.ICO");
+            this.ImageList1.Images.SetKeyName(1, "CTRCAN.ICO");
+            this.ImageList1.Images.SetKeyName(2, "CTRFRAN.ICO");
+            this.ImageList1.Images.SetKeyName(3, "CTRGERM.ICO");
+            this.ImageList1.Images.SetKeyName(4, "CTRITALY.ICO");
+            this.ImageList1.Images.SetKeyName(5, "CTRJAPAN.ICO");
+            this.ImageList1.Images.SetKeyName(6, "CTRMEX.ICO");
+            this.ImageList1.Images.SetKeyName(7, "CTRSKOR.ICO");
+            this.ImageList1.Images.SetKeyName(8, "CTRSPAIN.ICO");
+            this.ImageList1.Images.SetKeyName(9, "CTRUK.ICO");
+            this.ImageList1.Images.SetKeyName(10, "CTRUSA.ICO");
+            this.ImageList1.Images.SetKeyName(11, "FLGASTRL.ICO");
+            this.ImageList1.Images.SetKeyName(12, "FLGAUSTA.ICO");
+            this.ImageList1.Images.SetKeyName(13, "FLGBELG.ICO");
+            this.ImageList1.Images.SetKeyName(14, "FLGBRAZL.ICO");
+            this.ImageList1.Images.SetKeyName(15, "FLGCAN.ICO");
+            this.ImageList1.Images.SetKeyName(16, "FLGDEN.ICO");
+            this.ImageList1.Images.SetKeyName(17, "FLGFIN.ICO");
+            this.ImageList1.Images.SetKeyName(18, "FLGFRAN.ICO");
+            // 
+            // ImageList2
+            // 
+            this.ImageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList2.ImageStream")));
+            this.ImageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImageList2.Images.SetKeyName(0, "FLGGERM.ICO");
+            this.ImageList2.Images.SetKeyName(1, "CTRCAN.ICO");
+            this.ImageList2.Images.SetKeyName(2, "CTRFRAN.ICO");
+            this.ImageList2.Images.SetKeyName(3, "CTRGERM.ICO");
+            this.ImageList2.Images.SetKeyName(4, "CTRITALY.ICO");
+            this.ImageList2.Images.SetKeyName(5, "CTRJAPAN.ICO");
+            this.ImageList2.Images.SetKeyName(6, "CTRMEX.ICO");
+            this.ImageList2.Images.SetKeyName(7, "CTRSKOR.ICO");
+            this.ImageList2.Images.SetKeyName(8, "CTRSPAIN.ICO");
+            this.ImageList2.Images.SetKeyName(9, "CTRUK.ICO");
+            this.ImageList2.Images.SetKeyName(10, "CTRUSA.ICO");
+            this.ImageList2.Images.SetKeyName(11, "FLGASTRL.ICO");
+            this.ImageList2.Images.SetKeyName(12, "FLGAUSTA.ICO");
+            this.ImageList2.Images.SetKeyName(13, "FLGBELG.ICO");
+            this.ImageList2.Images.SetKeyName(14, "FLGBRAZL.ICO");
+            this.ImageList2.Images.SetKeyName(15, "FLGCAN.ICO");
+            this.ImageList2.Images.SetKeyName(16, "FLGDEN.ICO");
+            this.ImageList2.Images.SetKeyName(17, "FLGFIN.ICO");
+            this.ImageList2.Images.SetKeyName(18, "FLGFRAN.ICO");
             // 
             // FrmCustomers
             // 
@@ -195,5 +248,7 @@ namespace MyHW
         private System.Windows.Forms.ToolStripMenuItem customersIDDESCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem countryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem;
+        internal System.Windows.Forms.ImageList ImageList2;
+        internal System.Windows.Forms.ImageList ImageList1;
     }
 }

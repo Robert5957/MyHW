@@ -35,7 +35,7 @@ namespace MyHW
                     //cbbCountry.Items.Clear();
                     while (sdr.Read())
                     {
-                        this.cbbCountry.Items.Add(sdr[0].ToString());
+                        this.cbbCountry.Items.Add(sdr["Country"].ToString());
                     }
                     this.cbbCountry.Items.Add("All Country");
                     this.cbbCountry.SelectedItem = "All Country";
@@ -78,9 +78,21 @@ namespace MyHW
                     cmd.Connection = conn;
                     SqlDataReader sdr = cmd.ExecuteReader();
                     this.lsVCustomers.Items.Clear();
+                    Random rnd = new Random();
                     while (sdr.Read())
                     {
                         ListViewItem lvi = this.lsVCustomers.Items.Add(sdr[0].ToString());
+                     
+                        lvi.ImageIndex = rnd.Next(0, this.ImageList1.Images.Count);
+
+                        if (lvi.Index % 2 == 0)
+                        {
+                            lvi.BackColor = Color.LightBlue;
+                        }
+                        else
+                        {
+                            lvi.BackColor = Color.LightGreen;
+                        }
                         for (int i = 1; i < sdr.FieldCount; i++)
                         {
                             if (sdr.IsDBNull(i))
@@ -139,7 +151,57 @@ namespace MyHW
 
         private void countryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using (SqlConnection conn = new SqlConnection(Settings.Default.NorthwindConnectionString)) {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "select CompanyName from Customers where Country='USA';select CompanyName from Customers where Country='UK'";
+                cmd.Connection = conn;
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                lsVCustomers.Items.Clear();
+                int n = 0;
+                int k = 0;
+                while (dr.Read())
+                {
+                    ListViewItem lvi = this.lsVCustomers.Items.Add(dr["CompanyName"].ToString());
+                    if (this.lsVCustomers.Groups["USA"] == null)
+                    {
+                        ListViewGroup gUSA = this.lsVCustomers.Groups.Add("USA", "USA");
+                        gUSA.Tag = 0;
+                        lvi.Group = gUSA;
+                    }
+                    else
+                    {
+                        ListViewGroup gUSA = this.lsVCustomers.Groups["USA"];
+                        lvi.Group = gUSA;
+                    }
+                    this.lsVCustomers.Groups["USA"].Tag = 0;
+                    n = lsVCustomers.Items.Count;
+                    this.lsVCustomers.Groups["USA"].Header = "USA" +"("+n+")"; 
+                }
+                dr.NextResult();
+               
+                while (dr.Read())
+                {
+                       ListViewItem lvi = this.lsVCustomers.Items.Add(dr["CompanyName"].ToString());
+                    if (this.lsVCustomers.Groups["UK"] == null)
+                    {
+                        ListViewGroup group = this.lsVCustomers.Groups.Add("UK", "UK");
+                        group.Tag = 0;
+                        lvi.Group = group;
+                    }
+                    else
+                    {
+                        ListViewGroup gUSA = this.lsVCustomers.Groups["UK"];
+                        lvi.Group = gUSA;
+                    }
+                    this.lsVCustomers.Groups["UK"].Tag = 0;
+                     k= lsVCustomers.Items.Count;
+                    this.lsVCustomers.Groups["UK"].Header = "UK" + "(" +(k- n )+ ")";
+                }
 
+            }
+            
+            
+            }
         }
     }
-}
