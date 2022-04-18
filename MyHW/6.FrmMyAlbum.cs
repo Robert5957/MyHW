@@ -47,18 +47,11 @@ namespace MyHW
                 pic.Width = 100;
                 pic.Height = 50;
                 this.flowLayoutPanel2.Controls.Add(pic);
-                pic.Click += Pic_Click;
+                pic.Click += Pic_Click1;
             }
         }
 
-        private void Pic_Click(object sender, EventArgs e)
-        {
-            Form f = new Form();
-            f.BackgroundImage = ((PictureBox)sender).Image;
-            f.BackgroundImageLayout = ImageLayout.Stretch;
 
-            f.Show();
-        }
 
         private void PictureBoxAlbum_DragDrop(object sender, DragEventArgs e)
         {
@@ -193,8 +186,7 @@ namespace MyHW
                     da.Fill(ds);
                     DataTable dt = ds.Tables[0];
                     this.flowLayoutPanel1.Controls.Clear();
-                    string[] files = new string[dt.Rows.Count];
-                    for (int i = 0; i < files.Length; i++)
+                    for (int i = 0; i <dt.Rows.Count; i++)
                     {
                         PictureBox pic = new PictureBox();
                         byte[] bytes = (byte[])dt.Rows[i]["Picture"];
@@ -214,10 +206,9 @@ namespace MyHW
             }
          
         }
-
         private void Pic_Click1(object sender, EventArgs e)
-        {   
-            FrmShowAlbum fs = new FrmShowAlbum();
+        {
+             FrmShowAlbum fs = new FrmShowAlbum();
             fs.BackgroundImage = ((PictureBox)sender).Image;
             fs.BackgroundImageLayout = ImageLayout.Stretch;
             fs.Show();
@@ -264,8 +255,7 @@ namespace MyHW
                     
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
-            
-        }
+          }
 
         private void txtInpuCity_TextChanged(object sender, EventArgs e)
         {
@@ -302,8 +292,7 @@ namespace MyHW
                     da.Fill(ds);
                     DataTable dt = ds.Tables[0];
                     this.flowLayoutPanel1.Controls.Clear();
-                    string[] files = new string[dt.Rows.Count];
-                    for (int i = 0; i < files.Length; i++)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         PictureBox picread = new PictureBox();
                         byte[] bytes = (byte[])dt.Rows[i]["Picture"];
@@ -325,7 +314,7 @@ namespace MyHW
 
         private void btnFolder_Click(object sender, EventArgs e)
         {
-   //todo.....
+       //todo.....
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -336,6 +325,15 @@ namespace MyHW
         private void btnDelete_Click(object sender, EventArgs e)
         {
             //todo.....
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
     }
