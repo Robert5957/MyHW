@@ -52,7 +52,7 @@ namespace MyHomeWork
                         cmd1.CommandText = "addUser";
                         cmd1.Connection = conn;
                         cmd1.CommandType = CommandType.StoredProcedure;
-                          conn.Open();
+                         conn.Open();
                         cmd1.Parameters.AddWithValue("@accountName", txtUserName.Text);
                         cmd1.Parameters.AddWithValue("@accountPassword", txtPWD.Text.Trim());
                         cmd1.Parameters.AddWithValue("@firstName", txtFirstName.Text.Trim()) ;
@@ -60,11 +60,12 @@ namespace MyHomeWork
                         cmd1.Parameters.AddWithValue("@address", txtAddress.Text.Trim());
                         cmd1.Parameters.AddWithValue("@contactPhone", txtPhone.Text.Trim());
                         cmd1.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                        MemoryStream ms = new MemoryStream();                 //
+                        MemoryStream ms = new MemoryStream(); 
+                        byte[] pict = new byte[ms.Length];              
                         PictureBoxEnroll.Image.Save(ms,ImageFormat.Jpeg);
-                        byte[] pict = new byte[ms.Length];
-                        ms.Position = 0;
-                        ms.Read(pict, 0, pict.Length);
+                        pict = ms.GetBuffer();
+                        //ms.Position = 0;
+                        //ms.Read(pict, 0, pict.Length);
                         cmd1.Parameters.AddWithValue("@picture", pict);
                         cmd1.ExecuteNonQuery(); 
                         MessageBox.Show("註冊成功!");
