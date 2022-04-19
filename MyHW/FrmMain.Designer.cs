@@ -29,34 +29,24 @@ namespace MyHW
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.frm標準練習ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.frmPoductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.frmProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.frmPorductsDisconnectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.frmDataSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.frmAdventureWorksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.myAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.myAlbumV10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.myAlbumV20ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.frmCustomersListViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.frmCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.frmLogonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.homeWorkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.coursePracticeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -66,11 +56,16 @@ namespace MyHW
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Aqua;
+            this.splitContainer1.Panel1.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer1.SplitterDistance = 39;
+            this.splitContainer1.Size = new System.Drawing.Size(1143, 643);
+            this.splitContainer1.SplitterDistance = 64;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -81,167 +76,164 @@ namespace MyHW
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.menuStrip1);
-            this.splitContainer2.Panel1.Controls.Add(this.menuStrip2);
-            this.splitContainer2.Size = new System.Drawing.Size(800, 407);
-            this.splitContainer2.SplitterDistance = 159;
+            this.splitContainer2.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.splitContainer2.Panel1.Controls.Add(this.button8);
+            this.splitContainer2.Panel1.Controls.Add(this.button7);
+            this.splitContainer2.Panel1.Controls.Add(this.button10);
+            this.splitContainer2.Panel1.Controls.Add(this.button6);
+            this.splitContainer2.Panel1.Controls.Add(this.button5);
+            this.splitContainer2.Panel1.Controls.Add(this.button3);
+            this.splitContainer2.Panel1.Controls.Add(this.button4);
+            this.splitContainer2.Panel1.Controls.Add(this.button2);
+            this.splitContainer2.Panel1.Controls.Add(this.button1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitContainer2.Size = new System.Drawing.Size(1143, 575);
+            this.splitContainer2.SplitterDistance = 253;
             this.splitContainer2.TabIndex = 0;
             // 
-            // menuStrip1
+            // button8
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.homeWorkToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(159, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
+            this.button8.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button8.Location = new System.Drawing.Point(25, 421);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(200, 31);
+            this.button8.TabIndex = 8;
+            this.button8.Text = "Quizz";
+            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // frm標準練習ToolStripMenuItem
+            // button7
             // 
-            this.frm標準練習ToolStripMenuItem.Name = "frm標準練習ToolStripMenuItem";
-            this.frm標準練習ToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.frm標準練習ToolStripMenuItem.Text = "1.Frm標準練習";
+            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
+            this.button7.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button7.Location = new System.Drawing.Point(25, 372);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(200, 31);
+            this.button7.TabIndex = 7;
+            this.button7.Text = "7.FrmLogon";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // toolStripMenuItem2
+            // button10
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(209, 22);
-            this.toolStripMenuItem2.Text = "2.FrmPoductCategory";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            this.button10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button10.BackgroundImage")));
+            this.button10.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button10.Location = new System.Drawing.Point(25, 320);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(200, 31);
+            this.button10.TabIndex = 6;
+            this.button10.Text = "7.FrmCustomers";
+            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
-            // frmPoductsToolStripMenuItem
+            // button6
             // 
-            this.frmPoductsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.frmProductsToolStripMenuItem,
-            this.frmPorductsDisconnectedToolStripMenuItem});
-            this.frmPoductsToolStripMenuItem.Name = "frmPoductsToolStripMenuItem";
-            this.frmPoductsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.frmPoductsToolStripMenuItem.Text = "3.FrmPoducts";
+            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
+            this.button6.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button6.Location = new System.Drawing.Point(25, 272);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(200, 31);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "6.FrmMyAlbum";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // frmProductsToolStripMenuItem
+            // button5
             // 
-            this.frmProductsToolStripMenuItem.Name = "frmProductsToolStripMenuItem";
-            this.frmProductsToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-            this.frmProductsToolStripMenuItem.Text = "3.FrmProducts-Connected";
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button5.Location = new System.Drawing.Point(25, 235);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(200, 31);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "5.FrmAdventureWorks";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // frmPorductsDisconnectedToolStripMenuItem
+            // button3
             // 
-            this.frmPorductsDisconnectedToolStripMenuItem.Name = "frmPorductsDisconnectedToolStripMenuItem";
-            this.frmPorductsDisconnectedToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-            this.frmPorductsDisconnectedToolStripMenuItem.Text = "3.1.FrmPorducts-Disconnected";
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.Location = new System.Drawing.Point(25, 186);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(200, 31);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "4.Frm_DataSET 結構";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // frmDataSetToolStripMenuItem
+            // button4
             // 
-            this.frmDataSetToolStripMenuItem.Name = "frmDataSetToolStripMenuItem";
-            this.frmDataSetToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.frmDataSetToolStripMenuItem.Text = "4.FrmDataSet";
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
+            this.button4.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button4.Location = new System.Drawing.Point(25, 137);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(200, 31);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "3.FrmProducts";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // frmAdventureWorksToolStripMenuItem
+            // button2
             // 
-            this.frmAdventureWorksToolStripMenuItem.Name = "frmAdventureWorksToolStripMenuItem";
-            this.frmAdventureWorksToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.frmAdventureWorksToolStripMenuItem.Text = "5.FrmAdventureWorks";
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.Location = new System.Drawing.Point(25, 87);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(200, 31);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "2.FrmProductCategory";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // myAlbumToolStripMenuItem
+            // button1
             // 
-            this.myAlbumToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.myAlbumV10ToolStripMenuItem,
-            this.myAlbumV20ToolStripMenuItem});
-            this.myAlbumToolStripMenuItem.Name = "myAlbumToolStripMenuItem";
-            this.myAlbumToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.myAlbumToolStripMenuItem.Text = "6.MyAlbum";
-            // 
-            // myAlbumV10ToolStripMenuItem
-            // 
-            this.myAlbumV10ToolStripMenuItem.Name = "myAlbumV10ToolStripMenuItem";
-            this.myAlbumV10ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.myAlbumV10ToolStripMenuItem.Text = "6.1.MyAlbum v1.0";
-            // 
-            // myAlbumV20ToolStripMenuItem
-            // 
-            this.myAlbumV20ToolStripMenuItem.Name = "myAlbumV20ToolStripMenuItem";
-            this.myAlbumV20ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.myAlbumV20ToolStripMenuItem.Text = "6.2 MyAlbum v2.0";
-            // 
-            // frmCustomersListViewToolStripMenuItem
-            // 
-            this.frmCustomersListViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.frmCustomersToolStripMenuItem,
-            this.frmLogonToolStripMenuItem});
-            this.frmCustomersListViewToolStripMenuItem.Name = "frmCustomersListViewToolStripMenuItem";
-            this.frmCustomersListViewToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.frmCustomersListViewToolStripMenuItem.Text = "7.FrmCustomersListView";
-            // 
-            // frmCustomersToolStripMenuItem
-            // 
-            this.frmCustomersToolStripMenuItem.Name = "frmCustomersToolStripMenuItem";
-            this.frmCustomersToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.frmCustomersToolStripMenuItem.Text = "7.1.FrmCustomers";
-            // 
-            // frmLogonToolStripMenuItem
-            // 
-            this.frmLogonToolStripMenuItem.Name = "frmLogonToolStripMenuItem";
-            this.frmLogonToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.frmLogonToolStripMenuItem.Text = "7.2.FrmLogon";
-            // 
-            // homeWorkToolStripMenuItem
-            // 
-            this.homeWorkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.frm標準練習ToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.frmPoductsToolStripMenuItem,
-            this.frmDataSetToolStripMenuItem,
-            this.frmAdventureWorksToolStripMenuItem,
-            this.myAlbumToolStripMenuItem,
-            this.frmCustomersListViewToolStripMenuItem});
-            this.homeWorkToolStripMenuItem.Name = "homeWorkToolStripMenuItem";
-            this.homeWorkToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-            this.homeWorkToolStripMenuItem.Text = "HomeWork";
-            // 
-            // menuStrip2
-            // 
-            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.coursePracticeToolStripMenuItem});
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(159, 24);
-            this.menuStrip2.TabIndex = 1;
-            this.menuStrip2.Text = "menuStrip2";
-            // 
-            // coursePracticeToolStripMenuItem
-            // 
-            this.coursePracticeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem3});
-            this.coursePracticeToolStripMenuItem.Name = "coursePracticeToolStripMenuItem";
-            this.coursePracticeToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
-            this.coursePracticeToolStripMenuItem.Text = "CoursePractice";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem3.Text = "0403";
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(25, 34);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(200, 31);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "1. Frm標準練習.cs";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1143, 643);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FrmMain";
-            this.Text = "FrmMain";
+            this.Text = "HomeWork_024周進義V1";
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.menuStrip2.ResumeLayout(false);
-            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -250,23 +242,14 @@ namespace MyHW
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem homeWorkToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem frm標準練習ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem frmPoductsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem frmProductsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem frmPorductsDisconnectedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem frmDataSetToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem frmAdventureWorksToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem myAlbumToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem myAlbumV10ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem myAlbumV20ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem frmCustomersListViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem frmCustomersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem frmLogonToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem coursePracticeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }

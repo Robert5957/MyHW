@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
 using MyHW.Properties;
+using System.Threading;
 
 namespace MyHW
 {
@@ -49,14 +50,20 @@ namespace MyHW
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         byte[] photo = new byte[0];
-                        photo = (byte[])ds.Tables[0].Rows[0]["picture"];
-                        MemoryStream ms = new MemoryStream(photo);
-                        ms.Position = 0;
-                        PictureBoxLogo.Image = Image.FromStream(ms);
-                        MessageBox.Show("登入成功!");
-                    }
-                    else { MessageBox.Show("帳號或密碼錯誤!");
-                        txtUserName.Text = txtPWD.Text = " ";
+                            photo = (byte[])ds.Tables[0].Rows[0]["picture"];
+                            MemoryStream ms = new MemoryStream(photo);
+                            ms.Position = 0;
+                            PictureBoxLogo.Image = Image.FromStream(ms);
+                            MessageBox.Show("登入成功!");
+                            FrmMain f = new FrmMain();
+                            this.Hide();
+                            f.ShowDialog();
+                            Application.ExitThread();
+                        }
+                        else
+                        {
+                            MessageBox.Show("帳號或密碼錯誤!");
+                            txtUserName.Text = txtPWD.Text = " ";
                         txtUserName.Focus();
                     }
                 }

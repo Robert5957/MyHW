@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace MyHomeWork
 {
     public partial class FrmAdventureWorks : Form
@@ -21,7 +20,7 @@ namespace MyHomeWork
             this.productPhotoBindingSource.DataSource = this.awDataSet.ProductPhoto;
             this.productPhotoDataGridView.DataSource = this.productPhotoBindingSource;
             this.bindingNavigator1.BindingSource = this.productPhotoBindingSource;
-            DataTable dt = awDataSet.ProductPhoto;
+              DataTable dt = awDataSet.ProductPhoto;
             int[] arr = new int[dt.Rows.Count];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -36,6 +35,7 @@ namespace MyHomeWork
             {
                 if (q[j] != 0) { comboBox1.Items.Add(q[j]); }
             }
+            this.comboBox1.SelectedIndex = 0;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,6 +73,11 @@ namespace MyHomeWork
         private void button1_Click(object sender, EventArgs e)
         {
             productPhotoTableAdapter.FillByDatePicker(awDataSet.ProductPhoto, dateTimePicker1.Value, dateTimePicker2.Value);
+        }
+
+        private void FrmAdventureWorks_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -61,5 +61,10 @@ namespace MyHomeWork
             lblShow.Text= $"{this.bindingSource1.Position+1}/{this.bindingSource1.Count}";
             lblResult.Text = $"結果有{this.bindingSource1.Count}筆";
         }
+
+        private void FrmProducts_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

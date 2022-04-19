@@ -63,6 +63,8 @@ namespace MyHomeWork
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.productPhotoIDTextBox = new System.Windows.Forms.TextBox();
+            this.productPhotoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.awDataSet = new MyHW.awDataSet();
             this.thumbNailPhotoPictureBox = new System.Windows.Forms.PictureBox();
             this.thumbnailPhotoFileNameTextBox = new System.Windows.Forms.TextBox();
             this.largePhotoPictureBox = new System.Windows.Forms.PictureBox();
@@ -75,8 +77,6 @@ namespace MyHomeWork
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productPhotoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.awDataSet = new MyHW.awDataSet();
             this.productPhotoTableAdapter = new MyHW.awDataSetTableAdapters.ProductPhotoTableAdapter();
             this.tableAdapterManager = new MyHW.awDataSetTableAdapters.TableAdapterManager();
             productPhotoIDLabel = new System.Windows.Forms.Label();
@@ -87,11 +87,11 @@ namespace MyHomeWork
             modifiedDateLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productPhotoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.awDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbNailPhotoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.largePhotoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productPhotoDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productPhotoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.awDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // productPhotoIDLabel
@@ -216,10 +216,12 @@ namespace MyHomeWork
             // 
             // comboBox1
             // 
+            this.comboBox1.BackColor = System.Drawing.SystemColors.Menu;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(723, 52);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(140, 22);
+            this.comboBox1.Sorted = true;
             this.comboBox1.TabIndex = 77;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -377,7 +379,7 @@ namespace MyHomeWork
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(267, 31);
+            this.bindingNavigator1.Size = new System.Drawing.Size(262, 31);
             this.bindingNavigator1.TabIndex = 83;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -398,6 +400,17 @@ namespace MyHomeWork
             this.productPhotoIDTextBox.Name = "productPhotoIDTextBox";
             this.productPhotoIDTextBox.Size = new System.Drawing.Size(233, 22);
             this.productPhotoIDTextBox.TabIndex = 86;
+            // 
+            // productPhotoBindingSource
+            // 
+            this.productPhotoBindingSource.DataMember = "ProductPhoto";
+            this.productPhotoBindingSource.DataSource = this.awDataSet;
+            this.productPhotoBindingSource.CurrentChanged += new System.EventHandler(this.productPhotoBindingSource_CurrentChanged);
+            // 
+            // awDataSet
+            // 
+            this.awDataSet.DataSetName = "awDataSet";
+            this.awDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // thumbNailPhotoPictureBox
             // 
@@ -500,17 +513,6 @@ namespace MyHomeWork
             this.dataGridViewTextBoxColumn4.HeaderText = "ModifiedDate";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
-            // productPhotoBindingSource
-            // 
-            this.productPhotoBindingSource.DataMember = "ProductPhoto";
-            this.productPhotoBindingSource.DataSource = this.awDataSet;
-            this.productPhotoBindingSource.CurrentChanged += new System.EventHandler(this.productPhotoBindingSource_CurrentChanged);
-            // 
-            // awDataSet
-            // 
-            this.awDataSet.DataSetName = "awDataSet";
-            this.awDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // productPhotoTableAdapter
             // 
             this.productPhotoTableAdapter.ClearBeforeFill = true;
@@ -557,14 +559,15 @@ namespace MyHomeWork
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmAdventureWorks";
             this.Text = "FrmAdventureWorks";
+            this.Load += new System.EventHandler(this.FrmAdventureWorks_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productPhotoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.awDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbNailPhotoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.largePhotoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productPhotoDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productPhotoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.awDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

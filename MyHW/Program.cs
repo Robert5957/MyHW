@@ -18,7 +18,12 @@ namespace MyHW
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMyAlbum());
+            //Application.Run(new FrmCustomers());
+            //Application.Run(new FrmLogon());
+            //Application.Run(new Quizz());
+            //Application.Run(new FrmMyAlbum());
+            Application.Run(new FrmMain());
+
         }
     }
 }
