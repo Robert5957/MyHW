@@ -206,20 +206,15 @@ namespace MyHW
             }
          
         }
+             Form fs = new Form();
         private void Pic_Click1(object sender, EventArgs e)
         {
-             FrmShowAlbum fs = new FrmShowAlbum();
             fs.BackgroundImage = ((PictureBox)sender).Image;
             fs.BackgroundImageLayout = ImageLayout.Stretch;
             fs.Show();
+            fs.BringToFront();
         }
-
-        private void btnPictureCRUD_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void btnBrowse_Click(object sender, EventArgs e)
+       private void btnBrowse_Click(object sender, EventArgs e)
         {
              using (OpenFileDialog ofd = new OpenFileDialog())
             { ofd.Title = "Select picture files";
@@ -291,7 +286,7 @@ namespace MyHW
                     DataSet ds = new DataSet();
                     da.Fill(ds);
                     DataTable dt = ds.Tables[0];
-                    this.flowLayoutPanel1.Controls.Clear();
+                    this.flowLayoutPanel2.Controls.Clear();
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         PictureBox picread = new PictureBox();
@@ -324,19 +319,30 @@ namespace MyHW
 
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (string f in ofd.FileNames)
+                     this.flowLayoutPanel2.Controls.Clear();
+                      foreach (string f in ofd.FileNames)
                     {
-                        FileInfo fi = new FileInfo(f);
-                        ListViewItem item = new ListViewItem(fi.Name);
-                        item.SubItems.Add(fi.FullName);
-                        listView1.Items.Add(item);
+                        FileInfo fi = new FileInfo(f);                        
+                        PictureBox pic = new PictureBox();
+                        pic.Width = 100;
+                        pic.Height = 100;
+                        pic.BorderStyle =BorderStyle.FixedSingle;
+                        pic.BackgroundImageLayout = ImageLayout.Stretch;
+                        pic.Image = Image.FromFile(fi.FullName);
+                        flowLayoutPanel2.Controls.Add(pic);
+                        pic.Click += Pic_Click;
                     }
-
-
                 }
-
-
+             
+                
             }
+        }
+
+        private void Pic_Click(object sender, EventArgs e)
+        {
+          pictureBoxAlbum.Image= ((PictureBox)sender).Image;
+         pictureBoxAlbum.BackgroundImageLayout = ImageLayout.Stretch;
+          
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -351,11 +357,29 @@ namespace MyHW
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+     
+        private void button3_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+            string folderName = folderBrowserDialog1.SelectedPath;
+               foreach (string items in Directory.GetFiles(folderName)) {
+                PictureBox pic = new PictureBox();
+                pic.Width = 100;
+                pic.Height = 100;
+                pic.BorderStyle = BorderStyle.FixedSingle;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Image = Image.FromFile(items);
+                flowLayoutPanel2.Controls.Add(pic);
+                pic.Click += Pic_Click;
+            }
         }
     }
     }

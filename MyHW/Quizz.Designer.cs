@@ -1,7 +1,7 @@
 ﻿
 namespace MyHW
 {
-    partial class FrmShowAlbum
+    partial class Quizz
     {
         /// <summary>
         /// Required designer variable.
@@ -29,21 +29,31 @@ namespace MyHW
         /// </summary>
         private void InitializeComponent()
         {
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // FrmShowAlbum
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(2, 5);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(276, 486);
+            this.treeView1.TabIndex = 0;
+            // 
+            // Quizz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 450);
-            this.MaximizeBox = false;
-            this.Name = "FrmShowAlbum";
+            this.ClientSize = new System.Drawing.Size(333, 523);
+            this.Controls.Add(this.treeView1);
+            this.Name = "Quizz";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmShowAlbum";
+            this.Text = "Quizz";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.TreeView treeView1;
     }
 }
