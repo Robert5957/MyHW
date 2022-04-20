@@ -34,7 +34,7 @@ namespace MyHW
                     da.Fill(ds);
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        TreeNode tn = this.treeView1.Nodes.Add(ds.Tables[0].Rows[i][0].ToString() + "(" + ds.Tables[0].Rows[i][1].ToString());
+                        TreeNode tn = this.treeView1.Nodes.Add(ds.Tables[0].Rows[i][0].ToString() + "(" + ds.Tables[0].Rows[i][1].ToString() + ")");
                         cmd.CommandText = $"select distinct City from Customers where Country='{ds.Tables[0].Rows[i][0]}'";
                         SqlDataAdapter sda = new SqlDataAdapter(cmd.CommandText, conn);
                         DataSet ds1 = new DataSet();
@@ -48,10 +48,5 @@ namespace MyHW
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-
-        private void Quizz_Load(object sender, EventArgs e)
-        {
-
         }
-    }
 }

@@ -43,12 +43,11 @@ namespace MyHW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 523);
+            this.ClientSize = new System.Drawing.Size(387, 523);
             this.Controls.Add(this.treeView1);
             this.Name = "Quizz";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quizz";
-            this.Load += new System.EventHandler(this.Quizz_Load);
             this.ResumeLayout(false);
 
         }
