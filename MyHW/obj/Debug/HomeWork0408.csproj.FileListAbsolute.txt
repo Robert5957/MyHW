@@ -165,3 +165,5 @@ H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\HomeWork0408.csproj.GenerateResource.cac
 H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\HomeWork0408.csproj.CoreCompileInputs.cache
 H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.exe
 H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.pdb
+H:\ispan\GitHub\MyHW0419\MyHW\bin\Debug\Database2.mdf
+H:\ispan\GitHub\MyHW0419\MyHW\bin\Debug\Database2_log.ldf
