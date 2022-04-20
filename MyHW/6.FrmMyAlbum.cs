@@ -252,7 +252,7 @@ namespace MyHW
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = $"Select Picture from pictureTour as p join  city on p.cityID=city.cityID where cityName='{comboBoxCitySearch.SelectedItem}'";
+                    cmd.CommandText = $"Select * from pictureTour as p join  city on p.cityID=city.cityID where cityName='{comboBoxCitySearch.SelectedItem}'";
                     cmd.Connection = conn;
                     SqlDataAdapter da = new SqlDataAdapter(cmd.CommandText, conn);
                     DataSet ds = new DataSet();
@@ -261,15 +261,16 @@ namespace MyHW
                     //this.flowLayoutPanel2.Controls.Clear();
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        PictureBox picread = new PictureBox();
+                        PictureBox pic = new PictureBox();
                         byte[] bytes = (byte[])dt.Rows[i]["Picture"];
                         MemoryStream ms = new MemoryStream(bytes);
-                        picread.Image = Image.FromStream(ms);
-                        picread.SizeMode = PictureBoxSizeMode.StretchImage;
-                        picread.Width = 100;
-                        picread.Height = 100;
-                        this.flowLayoutPanel2.Controls.Add(picread);
-                        picread.Click += Pic_Click;
+                        pic.Image = Image.FromStream(ms);
+                        pic.SizeMode = PictureBoxSizeMode.StretchImage;
+                        pic.Width = 100;
+                        pic.Height = 100;
+                        pic.Name = dt.Rows[i]["pictureID"].ToString();
+                        this.flowLayoutPanel2.Controls.Add(pic);
+                        pic.Click += Pic_Click;
                     }
                 }
             }
@@ -280,11 +281,20 @@ namespace MyHW
         }//查詢
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //todo.....
+
+            //todo...
+            //int tagp = 0;
+            //foreach (PictureBox pb in flowLayoutPanel2.Controls.OfType<PictureBox>())
+            //{
+            //    //PictureBox pb = (PictureBox)flowLayoutPanel2.Controls.OfType(PictureBox);
+            //    tagp =(int)pb.Tag;
+
+            //}
+            //lblCityID.Text = tagp.ToString();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //todo.....
+            flowLayoutPanel2.Controls.RemoveAt(indexPB);
         }
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -379,19 +389,18 @@ namespace MyHW
                     pict = ms.GetBuffer();
                     cmd.Parameters.AddWithValue("@picture", pict);
                     cmd.ExecuteNonQuery();
-                 
                 }  
-
                 MessageBox.Show("Save all  photos!");
             }
                myButton(); 
-
         }//全部相片儲存
-        private void Pic_Click(object sender, EventArgs e)
+        int indexPB = 0;
+       private void Pic_Click(object sender, EventArgs e)
         {
             pictureBoxAlbum.Image = ((PictureBox)sender).Image;
             pictureBoxAlbum.BackgroundImageLayout = ImageLayout.Stretch;
-
+                var pictureBox = (PictureBox)sender;
+                indexPB = flowLayoutPanel2.Controls.GetChildIndex(pictureBox);
         }//相簿單筆預覽
         private void Pic_Click1(object sender, EventArgs e)
         {
@@ -411,6 +420,10 @@ namespace MyHW
             flowLayoutPanel2.Controls.Add(pic);
             pic.Click += Pic_Click;
         }//FolderGetfiles to show in flowpanel//多筆相片產生預覽
-          }
+        private void deleteToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            flowLayoutPanel2.Controls.RemoveAt(indexPB);
+        }
+    }
 }
 

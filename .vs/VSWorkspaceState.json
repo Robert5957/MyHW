@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MyHW"
+    "\\MyHW",
+    "\\MyHW\\Properties"
   ],
-  "SelectedNode": "\\MyHW.sln",
+  "SelectedNode": "\\MyHW\\6.FrmMyAlbum.cs",
   "PreviewInSolutionExplorer": false
 }
