@@ -36,11 +36,11 @@ namespace MyHW
             } else {
             try
             {
-                using (SqlConnection conn = new SqlConnection(Settings.Default.MyLogon))
+                using (SqlConnection conn = new SqlConnection(Settings.Default.MyLocalDB))
                 {
                     conn.Open();
                     SqlCommand sqlcmd = new SqlCommand();
-                    sqlcmd.CommandText = "Select accountName, accountPassword,picture from accountLogon where accountName=@accountName and accountPassword=@accountPassword ";
+                    sqlcmd.CommandText = "Select accountName, accountPassword,picture from account  where accountName=@accountName and accountPassword=@accountPassword ";
                     sqlcmd.Parameters.AddWithValue("@accountName", txtUserName.Text);
                     sqlcmd.Parameters.AddWithValue("@accountPassword", txtPWD.Text);
                     sqlcmd.Connection = conn;
@@ -78,6 +78,11 @@ namespace MyHW
         {
             txtUserName.Text = txtPWD.Text = "";
             this.Close();
+        }
+
+        private void FrmLogon_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

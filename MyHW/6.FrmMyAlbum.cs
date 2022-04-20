@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace MyHW
 {
-    
+
     public partial class FrmMyAlbum : Form
-    {SqlDataReader dr;
+    {
         public FrmMyAlbum()
         {
             InitializeComponent();
@@ -30,12 +30,12 @@ namespace MyHW
             this.flowLayoutPanel2.AllowDrop = true;
             this.flowLayoutPanel2.DragDrop += FlowLayoutPanel2_DragDrop;
             this.flowLayoutPanel2.DragEnter += FlowLayoutPanel2_DragEnter;
-        }
+        }     
+        Form fs = new Form();
         private void FlowLayoutPanel2_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Copy;
         }
-
         private void FlowLayoutPanel2_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -49,21 +49,16 @@ namespace MyHW
                 this.flowLayoutPanel2.Controls.Add(pic);
                 pic.Click += Pic_Click1;
             }
-        }
-
-
-
+        }//多筆相片拖拉
         private void PictureBoxAlbum_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             this.pictureBoxAlbum.Image = Image.FromFile(files[0]);
-        }
-
+        }//單筆相片拖拉
         private void PictureBoxAlbum_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Copy;
         }
-
         private void loadTravelArea()
         {
             try
@@ -72,7 +67,7 @@ namespace MyHW
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "select distinct  countryName from country order by countryName;"+
+                    cmd.CommandText = "select distinct  countryName from country order by countryName;" +
                        $"select  cityName from city  join country  on city.countryID=country.countryID  where countryName= '{comboBoxCountry.SelectedItem}' ";
                     cmd.Connection = conn;
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -86,12 +81,12 @@ namespace MyHW
                     {
                         comboBoxCity.Items.Add(dr[0].ToString());
                     }
-                    
+
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
-          
-        }
+
+        }//國家地區產生
         private void comboBoxCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -114,7 +109,6 @@ namespace MyHW
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-        
         private void comboBoxCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -134,11 +128,10 @@ namespace MyHW
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-
-        void  myButton()
+        void myButton()
         {
-                       SqlConnection conn = null;
-
+            SqlConnection conn = null;
+            panel1.Controls.Clear();
             try
             {
                 conn = new SqlConnection(Settings.Default.MyLogon);
@@ -169,11 +162,11 @@ namespace MyHW
                     conn.Close();
                 }
             }
-        }
+        }//相簿城市按鈕產生
         private void B_Click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
-             try
+            try
             {
                 using (SqlConnection conn = new SqlConnection(Settings.Default.MyLogon))
                 {
@@ -186,7 +179,7 @@ namespace MyHW
                     da.Fill(ds);
                     DataTable dt = ds.Tables[0];
                     this.flowLayoutPanel1.Controls.Clear();
-                    for (int i = 0; i <dt.Rows.Count; i++)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         PictureBox pic = new PictureBox();
                         byte[] bytes = (byte[])dt.Rows[i]["Picture"];
@@ -196,62 +189,16 @@ namespace MyHW
                         pic.Width = 100;
                         pic.Height = 100;
                         this.flowLayoutPanel1.Controls.Add(pic);
-                        pic.Click += Pic_Click1;
-                       }
-               }
+                        pic.Click += Pic_Click;
+                    }
                 }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-         
-        }
-             Form fs = new Form();
-        private void Pic_Click1(object sender, EventArgs e)
-        {
-            fs.BackgroundImage = ((PictureBox)sender).Image;
-            fs.BackgroundImageLayout = ImageLayout.Stretch;
-            fs.Show();
-            fs.BringToFront();
-        }
-       private void btnBrowse_Click(object sender, EventArgs e)
-        {
-             using (OpenFileDialog ofd = new OpenFileDialog())
-            { ofd.Title = "Select picture files";
-              ofd.InitialDirectory = ".\\";
-              ofd.Filter = "image files(*.gif;*.jpeg;*.jpg;*.bmp)|*.gif;*.jpeg;*.jpg;*.bmp";
-                if (ofd.ShowDialog(this) == DialogResult.OK)
-                {
-                    pictureBoxAlbum.Image = Image.FromFile(ofd.FileName);
-                }
-            }
-        }
 
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-              try
-                {
-                    SqlConnection conn = new SqlConnection(Settings.Default.MyLogon);
-                        SqlCommand cmd1 = new SqlCommand();
-                        cmd1.CommandText = "addPicture";
-                        cmd1.Connection = conn;
-                        cmd1.CommandType = CommandType.StoredProcedure;
-                        conn.Open();
-                        cmd1.Parameters.AddWithValue("@date", dateTimePicker1.Value);
-                        cmd1.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
-                        cmd1.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
-                        MemoryStream ms = new MemoryStream();    
-                         byte[] pict = new byte[ms.Length];             
-                        pictureBoxAlbum.Image.Save(ms, ImageFormat.Jpeg);
-                        pict = ms.GetBuffer();
-                        cmd1.Parameters.AddWithValue("@picture", pict);
-                        cmd1.ExecuteNonQuery();
-                        MessageBox.Show("相片增加成功!");
-                    
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-          }
-
+        }//城市相簿產生
         private void txtInpuCity_TextChanged(object sender, EventArgs e)
         {
             try
@@ -271,9 +218,9 @@ namespace MyHW
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-
-        private void btnRead_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
+            flowLayoutPanel2.Controls.Clear();
             try
             {
                 using (SqlConnection conn = new SqlConnection(Settings.Default.MyLogon))
@@ -306,7 +253,31 @@ namespace MyHW
                 MessageBox.Show(ex.Message);
             }
         }
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //todo.....
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //todo.....
+        }
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+        }
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Select picture files";
+                ofd.InitialDirectory = ".\\";
+                ofd.Filter = "image files(*.gif;*.jpeg;*.jpg;*.bmp)|*.gif;*.jpeg;*.jpg;*.bmp";
+                if (ofd.ShowDialog(this) == DialogResult.OK)
+                {
+                    pictureBoxAlbum.Image = Image.FromFile(ofd.FileName);
+                }
+            }
+        }//單筆相片上傳
         private void btnFolder_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog()
@@ -316,71 +287,109 @@ namespace MyHW
                 Multiselect = true
             })
             {
-
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                     this.flowLayoutPanel2.Controls.Clear();
-                      foreach (string f in ofd.FileNames)
+                    this.flowLayoutPanel2.Controls.Clear();
+                    foreach (string k in ofd.FileNames)
                     {
-                        FileInfo fi = new FileInfo(f);                        
-                        PictureBox pic = new PictureBox();
-                        pic.Width = 100;
-                        pic.Height = 100;
-                        pic.BorderStyle =BorderStyle.FixedSingle;
-                        pic.BackgroundImageLayout = ImageLayout.Stretch;
-                        pic.Image = Image.FromFile(fi.FullName);
-                        flowLayoutPanel2.Controls.Add(pic);
-                        pic.Click += Pic_Click;
+                        FileInfo fi = new FileInfo(k);
+                        string items = fi.FullName;
+                        folderGetfile(items);
                     }
+
                 }
-             
-                
             }
-        }
-
-        private void Pic_Click(object sender, EventArgs e)
+        }//多筆相片上傳
+        private void btnCreate_Click(object sender, EventArgs e)
         {
-          pictureBoxAlbum.Image= ((PictureBox)sender).Image;
-         pictureBoxAlbum.BackgroundImageLayout = ImageLayout.Stretch;
-          
-        }
+            try
+            {
+                SqlConnection conn = new SqlConnection(Settings.Default.MyLogon);
+                SqlCommand cmd1 = new SqlCommand();
+                cmd1.CommandText = "addPicture";
+                cmd1.Connection = conn;
+                cmd1.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                cmd1.Parameters.AddWithValue("@date", dateTimePicker1.Value);
+                cmd1.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
+                cmd1.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
+                MemoryStream ms = new MemoryStream();
+                byte[] pict = new byte[ms.Length];
+                pictureBoxAlbum.Image.Save(ms, ImageFormat.Jpeg);
+                pict = ms.GetBuffer();
+                cmd1.Parameters.AddWithValue("@picture", pict);
+                cmd1.ExecuteNonQuery();
+                MessageBox.Show("相片增加成功!");
+                myButton();
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }//單筆資料儲存
+        private void btnBrowseFolder_Click(object sender, EventArgs e)
         {
-            //todo.....
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            //todo.....
-        }
-
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-     
-        private void button3_Click(object sender, EventArgs e)
-        {
+            flowLayoutPanel2.Controls.Clear();
             folderBrowserDialog1.ShowDialog();
             string folderName = folderBrowserDialog1.SelectedPath;
-               foreach (string items in Directory.GetFiles(folderName)) {
-                PictureBox pic = new PictureBox();
-                pic.Width = 100;
-                pic.Height = 100;
-                pic.BorderStyle = BorderStyle.FixedSingle;
-                pic.BackgroundImageLayout = ImageLayout.Stretch;
-                pic.Image = Image.FromFile(items);
-                flowLayoutPanel2.Controls.Add(pic);
-                pic.Click += Pic_Click;
+            foreach (string items in Directory.GetFiles(folderName))
+            {
+                folderGetfile(items);
             }
+        }//整批相片上傳
+        private void btnSaveAll_Click(object sender, EventArgs e)//save all from FlowPanel 2
+        {
+            using (SqlConnection conn = new SqlConnection(Settings.Default.MyLogon))
+            {
+               conn.Open();
+                foreach (PictureBox pb in flowLayoutPanel2.Controls)//get the pictureBox control from flowlayoutpanel
+                {     SqlCommand cmd = new SqlCommand(); 
+                       
+                   cmd.Connection = conn;  cmd.Parameters.AddWithValue("@date", dateTimePicker1.Value);
+                    cmd.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
+                    cmd.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
+                  cmd.CommandText = "addPicture";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                     MemoryStream ms = new MemoryStream();
+                    byte[] pict = new byte[ms.Length];
+                    pb.Image.Save(ms, ImageFormat.Jpeg);
+                    pict = ms.GetBuffer();
+                    cmd.Parameters.AddWithValue("@picture", pict);
+                    cmd.ExecuteNonQuery();
+                 
+                }  
+
+                MessageBox.Show("All save photos!");
+            }
+               myButton(); 
+
+        }//全部相片儲存
+        private void Pic_Click(object sender, EventArgs e)
+        {
+            pictureBoxAlbum.Image = ((PictureBox)sender).Image;
+            pictureBoxAlbum.BackgroundImageLayout = ImageLayout.Stretch;
+
+        }//相簿單筆預覽
+        private void Pic_Click1(object sender, EventArgs e)
+        {
+            fs.BackgroundImage = ((PictureBox)sender).Image;
+            fs.BackgroundImageLayout = ImageLayout.Stretch;
+            fs.Show();
+            fs.BringToFront();
+        }//上傳相簿單筆預覽
+        void folderGetfile(string items)
+        {
+            PictureBox pic = new PictureBox();
+            pic.Width = 100;
+            pic.Height = 100;
+            pic.BorderStyle = BorderStyle.FixedSingle;
+            pic.BackgroundImageLayout = ImageLayout.Stretch;
+            pic.Image = Image.FromFile(items);
+            flowLayoutPanel2.Controls.Add(pic);
+            pic.Click += Pic_Click;
+        }//FolderGetfiles to show in flowpanel//多筆相片產生預覽
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
-    }
+}
 

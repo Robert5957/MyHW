@@ -48,5 +48,10 @@ namespace MyHW
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
+
+        private void Quizz_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

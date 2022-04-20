@@ -35,8 +35,8 @@ namespace MyHomeWork
             {
                 try
                 {
-                    SqlConnection conn = new SqlConnection(Settings.Default.MyLogon);
-                    SqlCommand cmd = new SqlCommand("Select accountName from accountLogon where accountName=@userName", conn);
+                    SqlConnection conn = new SqlConnection(Settings.Default.MyLocalDB);
+                    SqlCommand cmd = new SqlCommand("Select accountName from account where accountName=@userName", conn);
                    conn.Open();
                     cmd.Parameters.AddWithValue("@userName", txtUserName.Text);
                     SqlDataReader dReader = cmd.ExecuteReader();

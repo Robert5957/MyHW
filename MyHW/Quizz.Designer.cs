@@ -48,6 +48,7 @@ namespace MyHW
             this.Name = "Quizz";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quizz";
+            this.Load += new System.EventHandler(this.Quizz_Load);
             this.ResumeLayout(false);
 
         }
