@@ -189,6 +189,7 @@ namespace MyHW
             this.Name = "FrmLogon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmLogon";
+            this.Load += new System.EventHandler(this.FrmLogon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

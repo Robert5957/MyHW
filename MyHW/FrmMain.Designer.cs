@@ -228,6 +228,7 @@ namespace MyHW
             this.Controls.Add(this.splitContainer1);
             this.Name = "FrmMain";
             this.Text = "HomeWork_024周進義V1";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
