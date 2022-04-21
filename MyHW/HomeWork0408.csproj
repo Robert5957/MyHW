@@ -144,6 +144,12 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPhotoShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPhotoShow.Designer.cs">
+      <DependentUpon>FrmPhotoShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="nwDataSet.cs">
       <DependentUpon>nwDataSet.xsd</DependentUpon>
     </Compile>
@@ -195,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPhotoShow.resx">
+      <DependentUpon>FrmPhotoShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
