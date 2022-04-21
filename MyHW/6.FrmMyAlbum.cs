@@ -191,7 +191,7 @@ namespace MyHW
             }
         }//相簿城市按鈕產生
         private void B_Click(object sender, EventArgs e)
-        {
+        {  
             Button b = (Button)sender;
             try
             {
