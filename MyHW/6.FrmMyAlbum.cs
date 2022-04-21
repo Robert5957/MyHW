@@ -9,15 +9,14 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyHW
 {
-
-    public partial class FrmMyAlbum : Form
+        public partial class FrmMyAlbum : Form
     {
-
         public FrmMyAlbum()
         {
             InitializeComponent();
@@ -99,7 +98,7 @@ namespace MyHW
                     {
                         comboBoxCountry.Items.Add(dr[0].ToString());
                     }
-                    comboBoxCountry.SelectedItem = "臺灣，中華民國";
+                    comboBoxCountry.SelectedItem = "臺灣";
                     dr.NextResult();
                     while (dr.Read())
                     {
@@ -164,6 +163,7 @@ namespace MyHW
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 DataTable dt = ds.Tables[0];
+                this.panel1.Controls.Add(btnAutoPlay);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     Button b = new Button();
@@ -176,6 +176,7 @@ namespace MyHW
                     b.Click += B_Click;
                     this.panel1.Controls.Add(b);
                 }
+                
             }
             catch (Exception ex)
             {
@@ -281,23 +282,49 @@ namespace MyHW
         }//查詢
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+          int updateID=int.Parse(pbtag);
+            try
+            {
+                SqlConnection conn = new SqlConnection(sqlconn);
+                SqlCommand cmd1 = new SqlCommand();
+                cmd1.CommandText = $"update pictureTour set loadDate=@loadDate, remark=@remark where pictureID='{@updateID}'";
+                cmd1.Connection = conn;
+                //cmd1.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                cmd1.Parameters.AddWithValue("@loadDate", dateTimePicker1.Value);
+                //cmd1.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
+                cmd1.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
+              
+                cmd1.ExecuteNonQuery();
+                MessageBox.Show("相片資料修改成功!");
+                myButton();
 
-            //todo...
-            //int tagp = 0;
-            //foreach (PictureBox pb in flowLayoutPanel2.Controls.OfType<PictureBox>())
-            //{
-            //    //PictureBox pb = (PictureBox)flowLayoutPanel2.Controls.OfType(PictureBox);
-            //    tagp =(int)pb.Tag;
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
 
-            //}
-            //lblCityID.Text = tagp.ToString();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            int updateID = int.Parse(pbtag);
             flowLayoutPanel2.Controls.RemoveAt(indexPB);
-        }
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(sqlconn);
+                SqlCommand cmd1 = new SqlCommand();
+                cmd1.CommandText = $"delete  pictureTour  where pictureID='{@updateID}'";
+                cmd1.Connection = conn;
+                //cmd1.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+              //  cmd1.Parameters.AddWithValue("@loadDate", dateTimePicker1.Value);
+                //cmd1.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
+                //cmd1.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
+
+                cmd1.ExecuteNonQuery();
+                MessageBox.Show("相片資料刪除成功!");
+                myButton();
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
 
         }
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -355,7 +382,7 @@ namespace MyHW
                 cmd1.Connection = conn;
                 cmd1.CommandType = CommandType.StoredProcedure;
                 conn.Open();
-                cmd1.Parameters.AddWithValue("@date", dateTimePicker1.Value);
+                cmd1.Parameters.AddWithValue("@loadDate", dateTimePicker1.Value);
                 cmd1.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
                 cmd1.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
                 MemoryStream ms = new MemoryStream();
@@ -378,7 +405,7 @@ namespace MyHW
                 foreach (PictureBox pb in flowLayoutPanel2.Controls)//get the pictureBox control from flowlayoutpanel
                 {     SqlCommand cmd = new SqlCommand(); 
                        
-                   cmd.Connection = conn;  cmd.Parameters.AddWithValue("@date", dateTimePicker1.Value);
+                   cmd.Connection = conn;  cmd.Parameters.AddWithValue("@loadDate", dateTimePicker1.Value);
                     cmd.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
                     cmd.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
                   cmd.CommandText = "addPicture";
@@ -395,12 +422,14 @@ namespace MyHW
                myButton(); 
         }//全部相片儲存
         int indexPB = 0;
+        string pbtag = "";
        private void Pic_Click(object sender, EventArgs e)
         {
             pictureBoxAlbum.Image = ((PictureBox)sender).Image;
             pictureBoxAlbum.BackgroundImageLayout = ImageLayout.Stretch;
-                var pictureBox = (PictureBox)sender;
-                indexPB = flowLayoutPanel2.Controls.GetChildIndex(pictureBox);
+            var pictureBox = (PictureBox)sender;
+            indexPB = flowLayoutPanel2.Controls.GetChildIndex(pictureBox);//get the controls and take a action
+            pbtag = (String)pictureBox.Name;
         }//相簿單筆預覽
         private void Pic_Click1(object sender, EventArgs e)
         {
@@ -424,6 +453,36 @@ namespace MyHW
         {
             flowLayoutPanel2.Controls.RemoveAt(indexPB);
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+              flowLayoutPanel2.Controls.RemoveAt(indexPB);
+        }
+        private void btnAutoPlay_Click(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;  
+            bool flag = true;
+            if (flag)
+            {
+                foreach (PictureBox pb in flowLayoutPanel1.Controls)
+                {
+                    fs.Width = 400;
+                    fs.Height = 400;
+                    PictureBox pbshow = new PictureBox();
+                    pbshow.Image = pb.Image;
+                    pbshow.BackgroundImageLayout = ImageLayout.Stretch;
+                    fs.Controls.Add(pbshow);
+                    fs.BackgroundImage = pbshow.Image;
+                    fs.BackgroundImageLayout = ImageLayout.Stretch;
+                    fs.Show();
+                    fs.BringToFront();
+                    Thread.Sleep(1000);
+                    fs.Controls.Clear();
+                } 
+            }
+            else { this.Close(); } flag = !flag;
+
+            }
+        }
     }
-}
+
 
