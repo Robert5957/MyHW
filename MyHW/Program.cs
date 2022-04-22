@@ -20,7 +20,7 @@ namespace MyHW
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FrmCustomers());
             //Application.Run(new FrmLogon());
-            //Application.Run(new Quizz());
+            //Application.Run(new Quiz());
             //Application.Run(new FrmMyAlbum());
             Application.Run(new FrmMain());
 

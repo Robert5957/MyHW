@@ -35,7 +35,7 @@ namespace MyHW
             this.flowLayoutPanel2.DragEnter += FlowLayoutPanel2_DragEnter;
         }
         string sqlconn = Settings.Default.MyLogon;
-         Form fs = new Form();
+        FrmPhotoShow fps = new FrmPhotoShow();
         private void loadPicTravelled()
         {
             try
@@ -69,8 +69,8 @@ namespace MyHW
                 PictureBox pic = new PictureBox();
                 pic.Image = Image.FromFile(files[i]);
                 pic.SizeMode = PictureBoxSizeMode.StretchImage;
-                pic.Width = 100;
-                pic.Height =100;
+                pic.Width = 250;
+                pic.Height =150;
                 this.flowLayoutPanel2.Controls.Add(pic);
                 pic.Click += Pic_Click1;
             }
@@ -221,8 +221,8 @@ namespace MyHW
                         MemoryStream ms = new MemoryStream(bytes);
                         pic.Image = Image.FromStream(ms);
                         pic.SizeMode = PictureBoxSizeMode.StretchImage;
-                        pic.Width = 100;
-                        pic.Height = 100;
+                        pic.Width = 250;
+                        pic.Height = 150;
                         this.flowLayoutPanel1.Controls.Add(pic);
                         pic.Click += Pic_Click1;
                     }
@@ -275,8 +275,8 @@ namespace MyHW
                         MemoryStream ms = new MemoryStream(bytes);
                         pic.Image = Image.FromStream(ms);
                         pic.SizeMode = PictureBoxSizeMode.StretchImage;
-                        pic.Width = 100;
-                        pic.Height = 100;
+                        pic.Width = 250;
+                        pic.Height = 150;
                         pic.Name = dt.Rows[i]["pictureID"].ToString();
                         this.flowLayoutPanel2.Controls.Add(pic);
                         pic.Click += Pic_Click;
@@ -302,14 +302,11 @@ namespace MyHW
                 cmd1.Parameters.AddWithValue("@loadDate", dateTimePicker1.Value);
                 //cmd1.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
                 cmd1.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
-              
-                cmd1.ExecuteNonQuery();
+                 cmd1.ExecuteNonQuery();
                 MessageBox.Show("相片資料修改成功!");
                 myButton();
-
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
-
         }//資料庫照片資訊更新
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -326,11 +323,9 @@ namespace MyHW
               //  cmd1.Parameters.AddWithValue("@loadDate", dateTimePicker1.Value);
                 //cmd1.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
                 //cmd1.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
-
                 cmd1.ExecuteNonQuery();
                 MessageBox.Show("相片資料刪除成功!");
                 myButton();
-
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
 
@@ -366,7 +361,6 @@ namespace MyHW
                         string items = fi.FullName;
                         folderGetfile(items);
                     }
-
                 }
             }
         }//多筆相片上傳
@@ -435,7 +429,6 @@ namespace MyHW
             }
             else { MessageBox.Show("說走就走!"); }
         }//全部相片儲存
-     
        private void Pic_Click(object sender, EventArgs e)
         {
             pictureBoxAlbum.Image = ((PictureBox)sender).Image;
@@ -446,16 +439,16 @@ namespace MyHW
         }//相簿單筆預覽
         private void Pic_Click1(object sender, EventArgs e)
         {
-            fs.BackgroundImage = ((PictureBox)sender).Image;
-            fs.BackgroundImageLayout = ImageLayout.Stretch;
-            fs.Show();
-            fs.BringToFront();
+            fps.BackgroundImage = ((PictureBox)sender).Image;
+            fps.BackgroundImageLayout = ImageLayout.Stretch;
+            fps.Show();
+            fps.BringToFront();
         }//上傳相簿單筆預覽
         void folderGetfile(string items)
         {
             PictureBox pic = new PictureBox();
-            pic.Width = 100;
-            pic.Height = 100;
+            pic.Width = 250;
+            pic.Height = 150;
             pic.BorderStyle = BorderStyle.FixedSingle;
             pic.BackgroundImageLayout = ImageLayout.Stretch;
             pic.MouseEnter += pic_MouseEnter;
@@ -474,38 +467,23 @@ namespace MyHW
         }
         private void btnAutoPlay_Click(object sender, EventArgs e)
         {
-                bool flag = true;
-            FrmPhotoShow fps = new FrmPhotoShow();
-                 
-            if (flag)
+            fps = new FrmPhotoShow();
+            foreach (PictureBox pb in flowLayoutPanel1.Controls)
             {
-                foreach (PictureBox pb in flowLayoutPanel1.Controls)
-                {
-                                PictureBox pbshow = new PictureBox();  
-                    pbshow.BackgroundImageLayout = ImageLayout.Stretch;
-                
+                PictureBox pbshow = new PictureBox();
+                pbshow.BackgroundImageLayout = ImageLayout.Stretch;
                 fps.Height = 600;
-            fps.Width = 550;
+                fps.Width = 700;
                 fps.Controls.Add(pbshow);
-                    //pbshow.Width = 500;
-                    //pbshow.Height = 500;
-                    //pbshow.Dock = DockStyle.Fill;
-                  
-                    //      pbshow.Image = pb.Image;
-                    fps.BackgroundImage = pb.Image;
-                    pbshow.Visible = false;
-                    fps.BackgroundImageLayout = ImageLayout.Stretch;
-                    fps.Show();
-                    fps.BringToFront();
-                    Thread.Sleep(1000);
-                    fps.Controls.Clear();
-                }
+                fps.BackgroundImage = pb.Image;
+                pbshow.Visible = false;
+                fps.BackgroundImageLayout = ImageLayout.Stretch;
+                fps.StartPosition = FormStartPosition.CenterParent;
+                fps.Show();
+                fps.BringToFront();
+                Thread.Sleep(1000);
+                fps.Controls.Clear();
             }
-            else { 
-                this.Close();
-            }
-            flag = !flag;
-
         }
         private void pic_MouseLeave(object sender, EventArgs e)
         {

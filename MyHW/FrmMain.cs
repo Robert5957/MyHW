@@ -61,7 +61,7 @@ namespace MyHW
                     formChange(MC7);
                     break;
                 case 8:
-                    Quizz MC8 = new Quizz();
+                    Quiz MC8 = new Quiz();
                     formChange(MC8);
                     break;
             }
