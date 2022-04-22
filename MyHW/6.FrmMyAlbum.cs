@@ -27,7 +27,7 @@ namespace MyHW
             this.pictureBoxAlbum.AllowDrop = true;
             this.pictureBoxAlbum.DragEnter += PictureBoxAlbum_DragEnter;
             this.pictureBoxAlbum.DragDrop += PictureBoxAlbum_DragDrop;
-            //picture show in flow panel
+            //picture show in flowLayoutPanel
             this.flowLayoutPanel2.AllowDrop = true;
             this.flowLayoutPanel2.DragDrop += FlowLayoutPanel2_DragDrop;
             this.flowLayoutPanel2.DragEnter += FlowLayoutPanel2_DragEnter;
@@ -191,7 +191,7 @@ namespace MyHW
             }
         }//相簿城市按鈕產生
         private void B_Click(object sender, EventArgs e)
-        {
+        {  
             Button b = (Button)sender;
             try
             {
@@ -279,7 +279,7 @@ namespace MyHW
             {
                 MessageBox.Show(ex.Message);
             }
-        }//查詢
+        }//查詢資料庫照片以利管理
         private void btnUpdate_Click(object sender, EventArgs e)
         {
           int updateID=int.Parse(pbtag);
@@ -302,7 +302,7 @@ namespace MyHW
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
 
-        }
+        }//資料庫照片資訊更新
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int updateID = int.Parse(pbtag);
@@ -326,7 +326,7 @@ namespace MyHW
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
 
-        }
+        }//資料庫單筆刪除
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -364,10 +364,12 @@ namespace MyHW
         }//多筆相片上傳
         private void btnBrowseFolder_Click(object sender, EventArgs e)
         {
+       
             flowLayoutPanel2.Controls.Clear();
             folderBrowserDialog1.ShowDialog();
             string folderName = folderBrowserDialog1.SelectedPath;
-            foreach (string items in Directory.GetFiles(folderName))
+            foreach (string items in Directory.GetFiles(folderName, "*.*", SearchOption.AllDirectories)
+            .Where(s => s.EndsWith(".jpeg") || s.EndsWith(".jpg")|| s.EndsWith(".bmp")))
             {
                 folderGetfile(items);
             }
@@ -440,6 +442,7 @@ namespace MyHW
         }//上傳相簿單筆預覽
         void folderGetfile(string items)
         {
+           
             PictureBox pic = new PictureBox();
             pic.Width = 100;
             pic.Height = 100;
@@ -459,30 +462,32 @@ namespace MyHW
         }
         private void btnAutoPlay_Click(object sender, EventArgs e)
         {
-            Button b = (Button)sender;  
-            bool flag = true;
+                     bool flag = true;
+            FrmPhotoShow fps = new FrmPhotoShow();
             if (flag)
             {
                 foreach (PictureBox pb in flowLayoutPanel1.Controls)
                 {
-                    fs.Width = 400;
-                    fs.Height = 400;
                     PictureBox pbshow = new PictureBox();
-                    pbshow.Image = pb.Image;
                     pbshow.BackgroundImageLayout = ImageLayout.Stretch;
-                    fs.Controls.Add(pbshow);
-                    fs.BackgroundImage = pbshow.Image;
-                    fs.BackgroundImageLayout = ImageLayout.Stretch;
-                    fs.Show();
-                    fs.BringToFront();
-                    Thread.Sleep(1000);
-                    fs.Controls.Clear();
-                } 
+                    fps.Height = 600;
+                    fps.Width = 550;
+                    fps.Controls.Add(pbshow);
+                    fps.BackgroundImage = pb.Image;
+                    fps.Visible = false;
+                    fps.BackgroundImageLayout = ImageLayout.Stretch;
+                    fps.Show(this);
+                    fps.BringToFront();
+                    Thread.Sleep(700);
+                }
             }
-            else { this.Close(); } flag = !flag;
+            else { 
+                this.Close();
+            }
+            flag = !flag;
 
-            }
         }
+    }
     }
 
 
