@@ -25,6 +25,7 @@ namespace MyHW
         private void button_Click(object sender, EventArgs e) 
         {
             Button b = (Button)sender;
+            b.BackColor = Color.Yellow;
            switch (b.TabIndex)
             {
                 case 0:
@@ -75,6 +76,17 @@ namespace MyHW
             this.splitContainer2.Panel2.Controls.Add(MC);
             MC.BringToFront();
             MC.Show();
+        }
+
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            b.Enabled = false;
+        }
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            b.Enabled = true;
         }
     }
 }

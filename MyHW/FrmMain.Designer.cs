@@ -116,6 +116,8 @@ namespace MyHW
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button_Click);
+            this.button8.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
+            this.button8.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // button7
             // 
@@ -134,6 +136,8 @@ namespace MyHW
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button_Click);
+            this.button7.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
+            this.button7.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // button10
             // 
@@ -152,6 +156,8 @@ namespace MyHW
             this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button10.UseVisualStyleBackColor = false;
             this.button10.Click += new System.EventHandler(this.button_Click);
+            this.button10.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
+            this.button10.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // button6
             // 
@@ -163,7 +169,7 @@ namespace MyHW
             this.button6.CausesValidation = false;
             this.button6.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.Yellow;
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.button6.Location = new System.Drawing.Point(3, 243);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(200, 45);
@@ -173,6 +179,8 @@ namespace MyHW
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button_Click);
+            this.button6.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
+            this.button6.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // button5
             // 
@@ -191,6 +199,8 @@ namespace MyHW
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button_Click);
+            this.button5.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
+            this.button5.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // button3
             // 
@@ -209,6 +219,8 @@ namespace MyHW
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button_Click);
+            this.button3.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
+            this.button3.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // button4
             // 
@@ -227,6 +239,8 @@ namespace MyHW
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button_Click);
+            this.button4.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
+            this.button4.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // button2
             // 
@@ -245,6 +259,8 @@ namespace MyHW
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button_Click);
+            this.button2.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
+            this.button2.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // button1
             // 
@@ -263,6 +279,8 @@ namespace MyHW
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button_Click);
+            this.button1.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
+            this.button1.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // FrmMain
             // 

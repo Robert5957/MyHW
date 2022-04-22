@@ -100,6 +100,8 @@ namespace MyHW
             this.btnAutoPlay.Name = "btnAutoPlay";
             this.btnAutoPlay.UseVisualStyleBackColor = false;
             this.btnAutoPlay.Click += new System.EventHandler(this.btnAutoPlay_Click);
+            this.btnAutoPlay.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.btnAutoPlay.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // tabControl1
             // 
