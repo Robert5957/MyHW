@@ -68,7 +68,7 @@ namespace MyHW
                 pic.Image = Image.FromFile(files[i]);
                 pic.SizeMode = PictureBoxSizeMode.StretchImage;
                 pic.Width = 100;
-                pic.Height = 50;
+                pic.Height =100;
                 this.flowLayoutPanel2.Controls.Add(pic);
                 pic.Click += Pic_Click1;
             }
@@ -170,13 +170,17 @@ namespace MyHW
                     b.Text = dt.Rows[i][0].ToString();
                     b.BackColor = Color.Blue;
                     b.ForeColor = Color.White;
-                    b.Left = 17;
-                    b.Top = 30 * i;
-                    //b.Tag = i;//ID
+                    b.Width = 123;
+                    b.Height = 35;
+                    b.BackColor = Color.AliceBlue;
+                    b.ForeColor = Color.Black;
+                    b.Anchor = AnchorStyles.Left;
+                    //b.Left = 0;
+                    //b.Top = 50 * i;
+                    b.Location= new Point(btnAutoPlay.Left, btnAutoPlay.Top +20+50*i);
                     b.Click += B_Click;
                     this.panel1.Controls.Add(b);
                 }
-                
             }
             catch (Exception ex)
             {
