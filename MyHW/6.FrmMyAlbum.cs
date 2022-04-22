@@ -17,6 +17,8 @@ namespace MyHW
 {
         public partial class FrmMyAlbum : Form
     {
+        int indexPB = 0;
+        string pbtag = "";
         public FrmMyAlbum()
         {
             InitializeComponent();
@@ -68,7 +70,7 @@ namespace MyHW
                 pic.Image = Image.FromFile(files[i]);
                 pic.SizeMode = PictureBoxSizeMode.StretchImage;
                 pic.Width = 100;
-                pic.Height = 50;
+                pic.Height =100;
                 this.flowLayoutPanel2.Controls.Add(pic);
                 pic.Click += Pic_Click1;
             }
@@ -170,13 +172,17 @@ namespace MyHW
                     b.Text = dt.Rows[i][0].ToString();
                     b.BackColor = Color.Blue;
                     b.ForeColor = Color.White;
-                    b.Left = 17;
-                    b.Top = 30 * i;
-                    //b.Tag = i;//ID
+                    b.Width = 123;
+                    b.Height = 35;
+                    b.BackColor = Color.AliceBlue;
+                    b.ForeColor = Color.Black;
+                    b.Anchor = AnchorStyles.Left;
+                    b.Location= new Point(btnAutoPlay.Left, btnAutoPlay.Top +20+50*i);
+                    b.MouseEnter += button_MouseEnter;
+                    b.MouseLeave += button_MouseLeave;
                     b.Click += B_Click;
                     this.panel1.Controls.Add(b);
                 }
-                
             }
             catch (Exception ex)
             {
@@ -207,8 +213,10 @@ namespace MyHW
                     DataTable dt = ds.Tables[0];
                     this.flowLayoutPanel1.Controls.Clear();
                     for (int i = 0; i < dt.Rows.Count; i++)
-                    {
+                    {  
                         PictureBox pic = new PictureBox();
+                        pic.MouseEnter += pic_MouseEnter;
+                        pic.MouseLeave += pic_MouseLeave;
                         byte[] bytes = (byte[])dt.Rows[i]["Picture"];
                         MemoryStream ms = new MemoryStream(bytes);
                         pic.Image = Image.FromStream(ms);
@@ -344,7 +352,7 @@ namespace MyHW
         {
             using (OpenFileDialog ofd = new OpenFileDialog()
             {
-                Filter = "Image|*.jpeg;*.jpg;*.bmp",
+                Filter = "Image|*.jpeg;*.jpg;*.bmp;*.png",
                 ValidateNames = true,
                 Multiselect = true
             })
@@ -369,14 +377,14 @@ namespace MyHW
             folderBrowserDialog1.ShowDialog();
             string folderName = folderBrowserDialog1.SelectedPath;
             foreach (string items in Directory.GetFiles(folderName, "*.*", SearchOption.AllDirectories)
-            .Where(s => s.EndsWith(".jpeg") || s.EndsWith(".jpg")|| s.EndsWith(".bmp")))
+            .Where(s => s.EndsWith(".jpeg") || s.EndsWith(".jpg")|| s.EndsWith(".bmp") || s.EndsWith(".png")))
             {
                 folderGetfile(items);
             }
         }//整批相片上傳
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            try
+               try
             {
                 SqlConnection conn = new SqlConnection(sqlconn);
                 SqlCommand cmd1 = new SqlCommand();
@@ -393,7 +401,7 @@ namespace MyHW
                 pict = ms.GetBuffer();
                 cmd1.Parameters.AddWithValue("@picture", pict);
                 cmd1.ExecuteNonQuery();
-                MessageBox.Show("相片增加成功!");
+                MessageBox.Show("回憶滿滿!");
                 myButton();
 
             }
@@ -401,30 +409,33 @@ namespace MyHW
         }//單筆資料儲存
         private void btnSaveAll_Click(object sender, EventArgs e)//save all from FlowPanel 2
         {
-            using (SqlConnection conn = new SqlConnection(sqlconn))
+            if (flowLayoutPanel2.Controls.Count !=0)
             {
-               conn.Open();
-                foreach (PictureBox pb in flowLayoutPanel2.Controls)//get the pictureBox control from flowlayoutpanel
-                {     SqlCommand cmd = new SqlCommand(); 
-                       
-                   cmd.Connection = conn;  cmd.Parameters.AddWithValue("@loadDate", dateTimePicker1.Value);
-                    cmd.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
-                    cmd.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
-                  cmd.CommandText = "addPicture";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                     MemoryStream ms = new MemoryStream();
-                    byte[] pict = new byte[ms.Length];
-                    pb.Image.Save(ms, ImageFormat.Jpeg);
-                    pict = ms.GetBuffer();
-                    cmd.Parameters.AddWithValue("@picture", pict);
-                    cmd.ExecuteNonQuery();
-                }  
-                MessageBox.Show("Save all  photos!");
+                using (SqlConnection conn = new SqlConnection(sqlconn))
+                {
+                    conn.Open();
+                    foreach (PictureBox pb in flowLayoutPanel2.Controls)//get the pictureBox control from flowlayoutpanel
+                    {
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = conn; cmd.Parameters.AddWithValue("@loadDate", dateTimePicker1.Value);
+                        cmd.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
+                        cmd.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
+                        cmd.CommandText = "addPicture";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        MemoryStream ms = new MemoryStream();
+                        byte[] pict = new byte[ms.Length];
+                        pb.Image.Save(ms, ImageFormat.Jpeg);
+                        pict = ms.GetBuffer();
+                        cmd.Parameters.AddWithValue("@picture", pict);
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("回憶滿滿!");
+                }
+                myButton();
             }
-               myButton(); 
+            else { MessageBox.Show("說走就走!"); }
         }//全部相片儲存
-        int indexPB = 0;
-        string pbtag = "";
+     
        private void Pic_Click(object sender, EventArgs e)
         {
             pictureBoxAlbum.Image = ((PictureBox)sender).Image;
@@ -442,12 +453,13 @@ namespace MyHW
         }//上傳相簿單筆預覽
         void folderGetfile(string items)
         {
-           
             PictureBox pic = new PictureBox();
             pic.Width = 100;
             pic.Height = 100;
             pic.BorderStyle = BorderStyle.FixedSingle;
             pic.BackgroundImageLayout = ImageLayout.Stretch;
+            pic.MouseEnter += pic_MouseEnter;
+            pic.MouseLeave += pic_MouseLeave;
             pic.Image = Image.FromFile(items);
             flowLayoutPanel2.Controls.Add(pic);
             pic.Click += Pic_Click;
@@ -462,23 +474,31 @@ namespace MyHW
         }
         private void btnAutoPlay_Click(object sender, EventArgs e)
         {
-                     bool flag = true;
+                bool flag = true;
             FrmPhotoShow fps = new FrmPhotoShow();
+                 
             if (flag)
             {
                 foreach (PictureBox pb in flowLayoutPanel1.Controls)
                 {
-                    PictureBox pbshow = new PictureBox();
+                                PictureBox pbshow = new PictureBox();  
                     pbshow.BackgroundImageLayout = ImageLayout.Stretch;
-                    fps.Height = 600;
-                    fps.Width = 550;
-                    fps.Controls.Add(pbshow);
+                
+                fps.Height = 600;
+            fps.Width = 550;
+                fps.Controls.Add(pbshow);
+                    //pbshow.Width = 500;
+                    //pbshow.Height = 500;
+                    //pbshow.Dock = DockStyle.Fill;
+                  
+                    //      pbshow.Image = pb.Image;
                     fps.BackgroundImage = pb.Image;
-                    fps.Visible = false;
+                    pbshow.Visible = false;
                     fps.BackgroundImageLayout = ImageLayout.Stretch;
-                    fps.Show(this);
+                    fps.Show();
                     fps.BringToFront();
-                    Thread.Sleep(700);
+                    Thread.Sleep(1000);
+                    fps.Controls.Clear();
                 }
             }
             else { 
@@ -486,6 +506,26 @@ namespace MyHW
             }
             flag = !flag;
 
+        }
+        private void pic_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BorderStyle = BorderStyle.None;
+        }
+        private void pic_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BorderStyle = BorderStyle.Fixed3D;
+        }
+        private void button_MouseEnter(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            b.BackColor = Color.Red;
+        }
+        private void button_MouseLeave(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            b.BackColor = Color.LightBlue;
         }
     }
     }

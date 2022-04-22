@@ -32,6 +32,7 @@ namespace MyHW
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMyAlbum));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAutoPlay = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.相簿 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -70,7 +71,6 @@ namespace MyHW
             this.button1 = new System.Windows.Forms.Button();
             this.btnSaveAll = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.btnAutoPlay = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.相簿.SuspendLayout();
@@ -92,6 +92,16 @@ namespace MyHW
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.btnAutoPlay);
             this.panel1.Name = "panel1";
+            // 
+            // btnAutoPlay
+            // 
+            this.btnAutoPlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.btnAutoPlay, "btnAutoPlay");
+            this.btnAutoPlay.Name = "btnAutoPlay";
+            this.btnAutoPlay.UseVisualStyleBackColor = false;
+            this.btnAutoPlay.Click += new System.EventHandler(this.btnAutoPlay_Click);
+            this.btnAutoPlay.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.btnAutoPlay.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // tabControl1
             // 
@@ -361,13 +371,6 @@ namespace MyHW
             this.btnSaveAll.Name = "btnSaveAll";
             this.btnSaveAll.UseVisualStyleBackColor = true;
             this.btnSaveAll.Click += new System.EventHandler(this.btnSaveAll_Click);
-            // 
-            // btnAutoPlay
-            // 
-            resources.ApplyResources(this.btnAutoPlay, "btnAutoPlay");
-            this.btnAutoPlay.Name = "btnAutoPlay";
-            this.btnAutoPlay.UseVisualStyleBackColor = true;
-            this.btnAutoPlay.Click += new System.EventHandler(this.btnAutoPlay_Click);
             // 
             // FrmMyAlbum
             // 

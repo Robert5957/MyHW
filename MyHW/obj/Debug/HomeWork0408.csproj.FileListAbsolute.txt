@@ -192,3 +192,4 @@ C:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\HomeWork0408.csproj.CoreCompileInputs.ca
 C:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.exe
 C:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.pdb
 H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.FrmPhotoShow.resources
+C:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.FrmPhotoShow.resources
