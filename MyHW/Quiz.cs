@@ -18,6 +18,8 @@ namespace MyHW
         {
             InitializeComponent();
             LoadData();
+            this.listView1.View = View.Details;
+            this.listView1.AllowColumnReorder = true;
         }
         private void LoadData()
         {
@@ -110,6 +112,21 @@ namespace MyHW
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void detailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.listView1.View = View.Details;
+        }
+
+        private void largeIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.listView1.View = View.LargeIcon;
+        }
+
+        private void smallIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.listView1.View = View.SmallIcon;
         }
     }
 }

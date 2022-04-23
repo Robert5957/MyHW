@@ -16,3 +16,13 @@ H:\ispan\MyHW\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.csproj
 H:\ispan\MyHW\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.csproj.CoreCompileInputs.cache
 H:\ispan\MyHW\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.exe
 H:\ispan\MyHW\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.pdb
+H:\ispan\GitHub\MyHW0419\WindowsFormsToolControls\bin\Debug\WindowsFormsToolControls.exe.config
+H:\ispan\GitHub\MyHW0419\WindowsFormsToolControls\bin\Debug\WindowsFormsToolControls.exe
+H:\ispan\GitHub\MyHW0419\WindowsFormsToolControls\bin\Debug\WindowsFormsToolControls.pdb
+H:\ispan\GitHub\MyHW0419\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.csproj.AssemblyReference.cache
+H:\ispan\GitHub\MyHW0419\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.FrmListViewCRUD.resources
+H:\ispan\GitHub\MyHW0419\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.Properties.Resources.resources
+H:\ispan\GitHub\MyHW0419\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.csproj.GenerateResource.cache
+H:\ispan\GitHub\MyHW0419\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.csproj.CoreCompileInputs.cache
+H:\ispan\GitHub\MyHW0419\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.exe
+H:\ispan\GitHub\MyHW0419\WindowsFormsToolControls\obj\Debug\WindowsFormsToolControls.pdb

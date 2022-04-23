@@ -146,7 +146,6 @@ C:\ispan\GitHub\MyHW\0419\MyHW\obj\Debug\MyHW.Quizz.resources
 H:\ispan\GitHub\MyHW0419\MyHW\bin\Debug\MyHW.exe.config
 H:\ispan\GitHub\MyHW0419\MyHW\bin\Debug\MyHW.exe
 H:\ispan\GitHub\MyHW0419\MyHW\bin\Debug\MyHW.pdb
-H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\HomeWork0408.csproj.AssemblyReference.cache
 H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\WindowsFormsApp1.FrmHomeWork.resources
 H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHomeWork.FrmProducts.resources
 H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.FrmProductCategory.resources
@@ -193,3 +192,4 @@ C:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.pdb
 H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.FrmPhotoShow.resources
 C:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.FrmPhotoShow.resources
 H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\MyHW.Quiz.resources
+H:\ispan\GitHub\MyHW0419\MyHW\obj\Debug\HomeWork0408.csproj.AssemblyReference.cache
