@@ -128,7 +128,6 @@ namespace MyHW
                     groupReader(dr, key1, tag1);
                     dr.NextResult();
                     groupReader(dr, key2, 2);
-                    dr.Close();
                 }
             }
         }

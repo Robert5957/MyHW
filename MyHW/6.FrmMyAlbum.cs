@@ -43,20 +43,20 @@ namespace MyHW
                 using (SqlConnection conn = new SqlConnection(sqlconn))
                 {
                     SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = $"Select distinct cityName from pictureTour as p join city on p.cityID=city.cityID order by cityName ";
+                    cmd.CommandText = $"Select distinct cityName, count(cityName) from pictureTour as p join city on p.cityID=city.cityID group by cityName ";
                     cmd.Connection = conn;
                     conn.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
                     comboBoxCitySearch.Items.Clear();
                     while (dr.Read())
                     {
-                        comboBoxCitySearch.Items.Add(dr["cityName"]);
+                        comboBoxCitySearch.Items.Add(dr[0].ToString()+"("+dr[1].ToString()+")");
                     }
                     comboBoxCitySearch.SelectedIndex = 0;
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }//游歷的城市
+        }//游歷的城市及其相片數統計
         private void FlowLayoutPanel2_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Copy;
@@ -106,7 +106,6 @@ namespace MyHW
                     {
                         comboBoxCity.Items.Add(dr[0].ToString());
                     }
-
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -161,7 +160,7 @@ namespace MyHW
             {
                 conn = new SqlConnection(sqlconn);
                 conn.Open();
-                SqlDataAdapter adapter = new SqlDataAdapter("Select distinct cityName from pictureTour  as p join city as c on p.cityID = c.cityID", conn);
+                SqlDataAdapter adapter = new SqlDataAdapter("Select distinct cityName, count(cityName)   from pictureTour  as p   join city as c on p.cityID = c.cityID group by cityName ", conn);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 DataTable dt = ds.Tables[0];
@@ -169,7 +168,7 @@ namespace MyHW
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     Button b = new Button();
-                    b.Text = dt.Rows[i][0].ToString();
+                    b.Text = dt.Rows[i][0].ToString()+"("+dt.Rows[i][1].ToString()+")";
                     b.BackColor = Color.Blue;
                     b.ForeColor = Color.White;
                     b.Width = 123;
@@ -205,7 +204,15 @@ namespace MyHW
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = $"Select Picture from pictureTour  as p join City as c on p.cityID= c.cityID where cityName = '{b.Text}'";
+                    string txtB = "";
+                    for (int i = 0; i < b.Text.Length; i++)
+                    {
+                        if (b.Text.Substring(i, 1) == "(")
+                        {
+                            txtB = b.Text.Substring(0, i);
+                        }
+                    }
+                    cmd.CommandText = $"Select Picture from pictureTour  as p join City as c on p.cityID= c.cityID where cityName = '{txtB}'";
                     cmd.Connection = conn;
                     SqlDataAdapter da = new SqlDataAdapter(cmd.CommandText, conn);
                     DataSet ds = new DataSet();
@@ -232,7 +239,7 @@ namespace MyHW
             {
                 MessageBox.Show(ex.Message);
             }
-        }//城市相簿產生
+        }//城市相簿產生及其相片數統計
         private void txtInpuCity_TextChanged(object sender, EventArgs e)
         {
             try
@@ -255,23 +262,30 @@ namespace MyHW
         private void btnSearch_Click(object sender, EventArgs e)
         {
             flowLayoutPanel2.Controls.Clear();
+            string txtB = "";
+            for (int i = 0; i < comboBoxCitySearch.Items.Count; i++)
+            {
+                if (comboBoxCitySearch.Text.Substring(i, 1) == "(")
+                {
+                    txtB = comboBoxCitySearch.Text.Substring(0, i);
+                }
+            }
             try
             {
                 using (SqlConnection conn = new SqlConnection(sqlconn))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = $"Select * from pictureTour as p join  city on p.cityID=city.cityID where cityName='{comboBoxCitySearch.SelectedItem}'";
+                    cmd.CommandText = $"Select pictureID,picture  from pictureTour as p join  city on p.cityID=city.cityID  where cityName='{txtB}' ";
                     cmd.Connection = conn;
-                    SqlDataAdapter da = new SqlDataAdapter(cmd.CommandText, conn);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
-                    DataTable dt = ds.Tables[0];
+                   SqlDataReader dr = cmd.ExecuteReader();
+                    DataTable dt = new DataTable();
+                    dt.Load(dr);
                     //this.flowLayoutPanel2.Controls.Clear();
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         PictureBox pic = new PictureBox();
-                        byte[] bytes = (byte[])dt.Rows[i]["Picture"];
+                        byte[] bytes = (byte[])dt.Rows[i]["picture"];
                         MemoryStream ms = new MemoryStream(bytes);
                         pic.Image = Image.FromStream(ms);
                         pic.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -411,7 +425,8 @@ namespace MyHW
                     foreach (PictureBox pb in flowLayoutPanel2.Controls)//get the pictureBox control from flowlayoutpanel
                     {
                         SqlCommand cmd = new SqlCommand();
-                        cmd.Connection = conn; cmd.Parameters.AddWithValue("@loadDate", dateTimePicker1.Value);
+                        cmd.Connection = conn; 
+                        cmd.Parameters.AddWithValue("@loadDate", dateTimePicker1.Value);
                         cmd.Parameters.AddWithValue("@cityID", lblCityID.Text.Trim());
                         cmd.Parameters.AddWithValue("@remark", txtRemarks.Text.Trim());
                         cmd.CommandText = "addPicture";
@@ -439,6 +454,7 @@ namespace MyHW
         }//相簿單筆預覽
         private void Pic_Click1(object sender, EventArgs e)
         {
+         
             fps.BackgroundImage = ((PictureBox)sender).Image;
             fps.BackgroundImageLayout = ImageLayout.Stretch;
             fps.Show();
@@ -460,12 +476,8 @@ namespace MyHW
         private void deleteToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             flowLayoutPanel2.Controls.RemoveAt(indexPB);
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-              flowLayoutPanel2.Controls.RemoveAt(indexPB);
-        }
-        private void btnAutoPlay_Click(object sender, EventArgs e)
+        }//多筆或整批資料上傳, 按右鍵刪除不要的相片
+          private void btnAutoPlay_Click(object sender, EventArgs e)
         {
             fps = new FrmPhotoShow();
             foreach (PictureBox pb in flowLayoutPanel1.Controls)
