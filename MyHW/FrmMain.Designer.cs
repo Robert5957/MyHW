@@ -112,7 +112,7 @@ namespace MyHW
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(200, 45);
             this.button8.TabIndex = 8;
-            this.button8.Text = "Quizz";
+            this.button8.Text = "Quiz";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button_Click);
