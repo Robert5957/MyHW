@@ -72,7 +72,7 @@ namespace MyHW
                 pic.Width = 250;
                 pic.Height =150;
                 this.flowLayoutPanel2.Controls.Add(pic);
-                pic.Click += Pic_Click1;
+                pic.Click += Pic_Click;
             }
         }//多筆相片拖拉
         private void PictureBoxAlbum_DragDrop(object sender, DragEventArgs e)
@@ -501,11 +501,14 @@ namespace MyHW
         {
             PictureBox pb = (PictureBox)sender;
             pb.BorderStyle = BorderStyle.None;
+            pb.Padding = new Padding(0);
         }
         private void pic_MouseEnter(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
             pb.BorderStyle = BorderStyle.Fixed3D;
+            pb.BackColor = Color.Red;
+            pb.Padding = new Padding(4);
         }
         private void button_MouseEnter(object sender, EventArgs e)
         {
